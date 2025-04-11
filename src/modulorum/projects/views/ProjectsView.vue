@@ -77,7 +77,7 @@
 
 
     const modalAperta= ref(false);
-    const PropriumModalAperta= ref(true);
+    const PropriumModalAperta= ref(false);
 
     const projectStore = useProjectsStore();
 
