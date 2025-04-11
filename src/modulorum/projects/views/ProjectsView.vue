@@ -13,12 +13,13 @@
 
         <tbody>
         <!-- row 2 -->
-        <tr class="hover:bg-base-300">
-            <th>2</th>
-            <td>Hart Hagerty</td>
-            <td>Desktop Support Technician</td>
-            <td>Purple</td>
+        <tr v-for="(project, index) in projectStore.projectList" :key="project.id" class="hover:bg-base-300">
+            <th>{{ index + 1 }}</th>
+            <td>{{ project.nomen }}</td>
+            <td>{{ project.chores.length }}</td>
+            <progress class="progress progress-primary w-56" value="10" max="100"></progress>
         </tr>
+        
         </tbody>
     </table>
 
@@ -27,7 +28,7 @@
 <InputModal 
     :aperta="modalAperta" ç
     @claudere="modalAperta=false"
-    @valorem="cumNovusValorem"
+    @valorem="projectStore.addereProject"
     placejolder="Introduce el nombre del proyecto"
     titulus="Nuevo proyecto"
     subtitulus="Dale un nombre a tu proyecto"
@@ -65,21 +66,19 @@
 
 
 <script lang="ts" setup>
-import FabButton from '@/modulorum/commune/components/FabButton.vue';
-import InputModal from '@/modulorum/commune/components/InputModal.vue';
-import PropriumModal from '@/modulorum/commune/components/PropriumModal.vue';
-import AddCircle from '@/modulorum/commune/icons/AddCircle.vue';
-import ModalIcon from '@/modulorum/commune/icons/ModalIcon.vue';
-import { ref } from 'vue';
+    import FabButton from '@/modulorum/commune/components/FabButton.vue';
+    import InputModal from '@/modulorum/commune/components/InputModal.vue';
+    import PropriumModal from '@/modulorum/commune/components/PropriumModal.vue';
+    import AddCircle from '@/modulorum/commune/icons/AddCircle.vue';
+    import ModalIcon from '@/modulorum/commune/icons/ModalIcon.vue';
+    import { ref } from 'vue';
+    import { useProjectsStore } from '../stores/projects.store';
 
 
 
-const modalAperta= ref(false);
+    const modalAperta= ref(false);
+    const PropriumModalAperta= ref(false);
 
-const PropriumModalAperta= ref(false);
-
-const cumNovusValorem = (projectNomen: string) => {
-console.log(projectNomen)
-}
+    const projectStore = useProjectsStore();
 
 </script>

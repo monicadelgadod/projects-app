@@ -1,9 +1,11 @@
 <template>
     <aside class="bg-base-200 w-72 min-h-screen">
         <h2 class="text-lg font-bold mx-4">Proyectos</h2>
-        <p class="text-sm font-bold mx-4">No hay proyectos</p>
+        <p v-if="ProjectsStore.nonProject" 
+        class="text-sm font-bold mx-4">No hay proyectos
+        </p>
         
-        <ul class="menu">
+        <ul v-else class="menu">
             <li><a>Item 1</a></li>
              <li>
              <details open>
@@ -27,3 +29,9 @@
 </ul>
     </aside>
 </template>
+
+<script lang="ts" setup>
+import { useProjectsStore } from '../stores/projects.store';
+
+const ProjectsStore = useProjectsStore()
+</script>
